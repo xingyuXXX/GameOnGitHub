@@ -6,10 +6,10 @@ by **XingyuZhou**
 
 ## 启动项
 
-位置：`Steam | 库 | CSGO 属性 | 启动项`；
+位置：`Steam | 库 | CSGO | 属性 | 启动项`；
 
 ```text
--high -novid -nojoy -refresh 80 -preload +exec xingyu.cfg -w 1280 -h 960 -fullscreen
+-high -novid -nojoy -refresh 80 -preload +exec main_xy.cfg -w 1280 -h 960 -fullscreen
 ```
 
 - `-high`：提高 CSGO 优先级；
@@ -17,8 +17,8 @@ by **XingyuZhou**
 - `-nojoy`：不使用摇杆，可提高少部分性能；
 - `-refresh 80`：设置刷新率为 80，根据显示器调整；
 - `-preload`：预加载纹理和建模，可以提高性能；
-- `+exec xingyu.cfg`：执行自己的配置文件；
-- `-w 1280 -h 960`：设置分辨率1280*960；
+- `+exec main_xy.cfg`：执行自己的配置文件；
+- `-w 1280 -h 960`：设置分辨率为 1280*960；
 - `-fullscreen`：全屏；
 
 ## 实用指令
