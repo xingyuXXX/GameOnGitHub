@@ -4,6 +4,8 @@ by **XingyuZhou**
 
 ---
 
+⚠️ ：目前只适用于官匹 64 tick；
+
 ## 启动项
 
 位置：`Steam | 库 | CSGO | 属性 | 启动项`；
