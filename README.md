@@ -24,7 +24,7 @@ by **XingyuZhou**
 | 功能 | 设置 |
 |:----:|:---:|
 | CUDA - GPUs | 全部 |
-| OpenGL 渲染 GPU | GTX 660M |
+| OpenGL 渲染 GPU | 自动选择 |
 | 三重缓冲 | 关 |
 | 各向异性过滤 | 关 |
 | 垂直同步 | 关 |
