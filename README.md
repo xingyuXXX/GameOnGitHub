@@ -25,6 +25,12 @@ by **XingyuZhou**
 
 ## 实用指令
 
+自用准星代码：
+
+```text
+CSGO-PcVAb-Dinja-VQrf3-rNtwt-9zN6H
+```
+
 输出当前准星参数：
 
 ```text
