@@ -74,7 +74,7 @@ by **XingyuZhou**
 自用准星代码：
 
 ```text
-CSGO-PcVAb-Dinja-VQrf3-rNtwt-9zN6H
+CSGO-5Y67B-iD95j-pEKBU-jnqe5-jReZH
 ```
 
 输出当前准星参数：
