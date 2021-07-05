@@ -140,21 +140,6 @@ echo ;echo "=== 持枪参数 ===";echo ;developer 2;con_filter_enable 1;con_filt
 | 左 Alt 键 | `alt` |
 | 右 Alt 键 | `ralt` |
 
-控制键区：
-
-| 键位 | code |
-|:-:|:-:|
-| 退格键 | `backspace` |
-| 制表符键 | `tab` |
-| 回车键 | `enter` |
-| 大写锁定键 | `capslock` |
-| 左 Shift 键 | `shift` |
-| 右 Shift 键 | `rshift` |
-| 左 Ctrl 键 | `ctrl` |
-| 右 Ctrl 键 | `rctrl` |
-| 左 Alt 键 | `alt` |
-| 右 Alt 键 | `ralt` |
-
 编辑键区：
 
 | 键位 | code |
