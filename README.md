@@ -12,6 +12,8 @@ by **XingyuZhou**
   - [实用指令](#实用指令)
   - [键位代码](#键位代码)
 
+tip: this news comes from manjaro i3.
+
 ## 电脑设置
 
 `Win R | control` 进入控制中心：
