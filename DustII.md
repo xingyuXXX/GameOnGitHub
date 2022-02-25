@@ -39,7 +39,7 @@ by **XingyuZhou** @ *TU Dresden*
 ### A 包点反清闪
 
 a.
-![p](Utilities/DustII/A包点反清闪_警家.jpg)
+![p](Utilities/DustII/A包点反清闪2.jpg)
 
 b.
 ![p](Utilities/DustII/A包点反清闪.jpg)
@@ -98,9 +98,13 @@ b.
 
 ![p](Utilities/DustII/警口过点烟_w一步跳投.jpg)
 
-### A 门瞬爆闪（蹲投）
+### A 门瞬爆闪
 
+a. 蹲投：
 ![p](Utilities/DustII/A门瞬爆闪_蹲扔.jpg)
+
+b.
+![p](Utilities/DustII/A门自助闪.jpg)
 
 ### A 门过点烟（跳投）
 
