@@ -10,7 +10,7 @@ by **XingyuZhou** @ *TU Dresden*
     - [A 警口反清闪](#a-警口反清闪)
     - [A 小匪口单向烟（蹲瞄后蹲跳投）](#a-小匪口单向烟蹲瞄后蹲跳投)
     - [A 小匪口火](#a-小匪口火)
-    - [警家过点烟](#警家过点烟)
+    - [A 回防过点烟](#a-回防过点烟)
     - [A 门反清闪](#a-门反清闪)
     - [B 包点死角火（跳投）](#b-包点死角火跳投)
     - [B 狙位火](#b-狙位火)
@@ -25,7 +25,7 @@ by **XingyuZhou** @ *TU Dresden*
     - [拐点火（跳投）](#拐点火跳投)
     - [蓝车火（跳投）](#蓝车火跳投)
     - [B 通死角火](#b-通死角火)
-    - [B 包点瞬爆闪](#b-包点瞬爆闪)
+    - [B 包点瞬爆闪（跳投）](#b-包点瞬爆闪跳投)
     - [B 狙位烟](#b-狙位烟)
     - [B 通过点烟](#b-通过点烟)
     - [B 门烟](#b-门烟)
@@ -41,8 +41,8 @@ by **XingyuZhou** @ *TU Dresden*
 a.
 ![p](Utilities/DustII/A包点反清闪_警家.jpg)
 
-b. (蹲瞄后站起来扔)
-![p](Utilities/DustII/A包点反清闪_蹲下瞄准站起来扔.jpg)
+b.
+![p](Utilities/DustII/A包点反清闪.jpg)
 
 ### A 警口反清闪
 
@@ -56,9 +56,9 @@ b. (蹲瞄后站起来扔)
 
 ![p](Utilities/DustII/A小匪口火.jpg)
 
-### 警家过点烟
+### A 回防过点烟
 
-![p](Utilities/DustII/警家过点烟.jpg)
+![p](Utilities/DustII/A回防过点烟.jpg)
 
 ### A 门反清闪
 
@@ -118,7 +118,7 @@ b.
 
 ![p](Utilities/DustII/B通死角火.jpg)
 
-### B 包点瞬爆闪
+### B 包点瞬爆闪（跳投）
 
 ![p](Utilities/DustII/B包点瞬爆闪.jpg)
 
