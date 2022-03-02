@@ -89,6 +89,18 @@ b. 小坑（跳投）：
 
 ![p](Utilities/Inferno/台上火_跳投.jpg)
 
+### 回防一二箱火
+
+![p](Utilities/Inferno/一二箱回防火.jpg)
+
+### 回防三箱火（w 一步扔）
+
+![p](Utilities/Inferno/三箱回防火_w一步扔.jpg)
+
+### 回防死角火（w 到屋檐处跳投）
+
+![p](Utilities/Inferno/B包点四角火_w到屋檐处跳投.jpg)
+
 ### 下水道火（w 到出阴影跳投）
 
 ![p](Utilities/Inferno/下水道火_w到出阴影跳投.jpg)
@@ -147,9 +159,17 @@ b. 小坑（跳投）：
 
 ![p](Utilities/Inferno/石板闪.jpg)
 
-### 香蕉道闪（跳投）
+### 香蕉道反前压闪
 
+a.
+![p](Utilities/Inferno/香蕉道反前压闪.jpg)
+
+b. 跳投
 ![p](Utilities/Inferno/香蕉道闪_匪家_跳投.jpg)
+
+### 香蕉道反前压火
+
+![p](Utilities/Inferno/香蕉道反前压火.jpg)
 
 ### B 包点闪（跳投）
 
@@ -159,9 +179,9 @@ b. 小坑（跳投）：
 
 ![p](Utilities/Inferno/中路瞬爆雷_w到花盆扔.jpg)
 
-### VIP 火（w 到出阴影跳投）
+### 楼梯火（w 到水管处扔）
 
-![p](Utilities/Inferno/VIP火_w到出阴影跳投.jpg)
+![p](Utilities/Inferno/楼梯火_w到水管处扔.jpg)
 
 ### 连接烟（跳投）
 
