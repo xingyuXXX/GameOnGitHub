@@ -1,4 +1,4 @@
-# CSGOonGit
+# GAMES
 
 by **XingyuZhou**
 
@@ -6,13 +6,17 @@ by **XingyuZhou**
 
 ⚠️ ：目前只适用于官匹 64 tick；
 
-- [CSGOonGit](#csgoongit)
-  - [电脑设置](#电脑设置)
-  - [启动项](#启动项)
-  - [实用指令](#实用指令)
-  - [键位代码](#键位代码)
+- [GAMES](#games)
+  - [CSGO](#csgo)
+    - [电脑设置](#电脑设置)
+    - [启动项](#启动项)
+    - [实用指令](#实用指令)
+    - [键位代码](#键位代码)
+  - [LOL](#lol)
 
-## 电脑设置
+## CSGO
+
+### 电脑设置
 
 `Win R | control` 进入控制中心：
 
@@ -22,7 +26,7 @@ by **XingyuZhou**
 
 > 鼠标 DPI: 800-1000
 
-## 启动项
+### 启动项
 
 位置：`Steam | 库 | CSGO | 属性 | 启动项`；
 
@@ -37,7 +41,7 @@ by **XingyuZhou**
 - `-fullscreen`：全屏；
 - `-allow_third_party_software` (optional): 允许使用微星小飞机监控；
 
-## 实用指令
+### 实用指令
 
 输出当前准星参数：
 
@@ -51,7 +55,7 @@ echo ;echo "=== 准星参数 ===";echo ;developer 2;con_filter_enable 1;con_filt
 echo ;echo "=== 持枪参数 ===";echo ;developer 2;con_filter_enable 1;con_filter_text viewmodel;host_writeconfig;con_filter_text cl_bob;host_writeconfig;developer 0;con_filter_enable 0;
 ```
 
-## 键位代码
+### 键位代码
 
 鼠标键区：
 
@@ -143,3 +147,7 @@ echo ;echo "=== 持枪参数 ===";echo ;developer 2;con_filter_enable 1;con_filt
 | 小键盘 - | `kp_minus` |
 | 小键盘 + | `kp_plus` |
 | 小键盘 Enter | `kp_enter` |
+
+## LOL
+
+TBC ...
