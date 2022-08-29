@@ -5,16 +5,11 @@ by **XingyuZhou**
 ---
 
 - [Rank Note](#rank-note)
-  - [ALLGEMEIN](#allgemein)
-    - [Attack Range](#attack-range)
-  - [MID](#mid)
-  - [TOP](#top)
-  - [JUG](#jug)
+  - [Acquired Experience](#acquired-experience)
+  - [Attack Range](#attack-range)
+  - [兵线](#兵线)
 
-## ALLGEMEIN
-
-1. 每 30s 来一波兵线
-2. 2 波普通线，1 波跑车线
+## Acquired Experience
 
 英雄升级所需经验（每级 +100）：
 
@@ -32,21 +27,29 @@ by **XingyuZhou**
 
 经验获取：
 
-| Unit                | Exp. |
-| ------------------- | ---- |
-| Melee Creeps (MC)   | 59   |
-| Remote Soldier (RS) | 29   |
-| Artillery Corps     | 92   |
-| Super Soldier       | 92   |
+| Unit                 | Exp. | Unit     | Exp. |
+| -------------------- | ---- | -------- | ---- |
+| Melee Creeps (MC)    | 60   | Red Buff | 110  |
+| Remote Soldier (RS)  | 30   |          |      |
+| Artillery Corps (AC) | 93   |          |      |
+| Super Soldier        | 92   |          |      |
 
 $$
 \begin{aligned}
-  \text{Lv. 2} &= 280 & &\leq & &3\times\text{MC} + 4\times\text{RS} = 293 \\
-  \text{Lv. 3} &= 660 & &\leq & &8\times\text{MC} + 6\times\text{RS} = 646 \\
+  \text{普通线} &= 3\times\text{MC} + 3\times\text{RS} &= 270 \\
+  \text{跑车线} &= \text{普通线} + 1\times\text{AC} &= 363 \\
 \end{aligned}
 $$
 
-### Attack Range
+$$
+\begin{aligned}
+  \text{Lv. 2} &= 280 & &\leq & &1\times\text{普通线} + 1\times\text{RS} = 300 \\
+  \text{Lv. 3} &= 660 & &\leq & &2\times\text{普通线} + 2\times\text{MC} = 660 \\
+  \text{Lv. 6} &= 2400 & &\leq & &6\times\text{普通线} + 2\times\text{跑车线} + 2\times\text{MC} = 2466 \\
+\end{aligned}
+$$
+
+## Attack Range
 
 TOP:
 ![top](assets/RTOP.png)
@@ -62,8 +65,14 @@ AD:
 
 ⚠️ : 防御塔攻击范围随*英雄体型大小*变化！
 
-## MID
+## 兵线
 
-## TOP
+1. 每 30s 来一波兵线
+2. 2 波普通线，1 波跑车线
+3. 中路 `01:30` 到达第一波兵
+4. 第三波跑车线，两个近战兵升 3 级
+5. 第九波跑车线（`05:30`），两个近战兵升 6 级
 
-## JUG
+留 4 个远程兵即可卡线
+
+先清完第五波兵可以考虑回城
