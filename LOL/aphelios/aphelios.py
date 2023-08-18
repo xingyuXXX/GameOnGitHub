@@ -18,14 +18,15 @@ def get_resource_path(img_file):
 class WeaponsRotationSimulator:
     def __init__(self):
         self.window = tk.Tk()
-        self.window.title("Aphelios Weapons Rotation Simulator")
+        # self.window.title("Aphelios Weapons Rotation Simulator")
+        self.window.title("厄斐琉斯控刀模拟器")
 
         self.frm_weapons = tk.Frame()
         self.frm_buttons = tk.Frame()
         self.frm_orders = tk.Frame()
-        self.frm_weapons.pack()
-        self.frm_buttons.pack()
-        self.frm_orders.pack()
+        self.frm_weapons.grid(row=0, column=0)
+        self.frm_buttons.grid(row=1, column=0)
+        self.frm_orders.grid(row=2, column=0)
 
         self.calibrum = Weapon("Calibrum", '通碧', get_resource_path('Calibrum.png'), "green")
         self.severum = Weapon("Severum", '断魄', get_resource_path('Severum.png'), "red")
@@ -62,18 +63,18 @@ class WeaponsRotationSimulator:
             if i in [0, 1]:
                 button.config(state=tk.NORMAL, command=lambda p=i: self.handler_consume(p))
                 if i == 1:
-                    button.grid(row=0, column=i, padx=(0, 20))
+                    button.grid(row=0, column=i, padx=(0, 10))
             else:
                 button.config(state=tk.DISABLED)
 
             self.btns_weapon.append(button)
 
-        tk.Button(master=self.frm_buttons, text="Reset", font=('Open Sans', 20), command=self.handler_reset).grid(row=0, column=0)
-        tk.Button(master=self.frm_buttons, text="Undo", font=('Open Sans', 20), command=self.handler_undo).grid(row=0, column=1)
-        tk.Button(master=self.frm_buttons, text="Set Order", font=('Open Sans', 20),
+        tk.Button(master=self.frm_buttons, text="恢复初始顺序", font=('Open Sans', 20), command=self.handler_reset).grid(row=0, column=0)
+        tk.Button(master=self.frm_buttons, text="撤销上一步", font=('Open Sans', 20), command=self.handler_undo).grid(row=0, column=1)
+        tk.Button(master=self.frm_buttons, text="指定顺序", font=('Open Sans', 20),
                   command=self.handler_set_order).grid(row=0, column=2, padx=(20, 0))
 
-        tk.Label(master=self.frm_orders, text="Desired Weapons Combo:", font=('Open Sans', 20)).grid(row=0, column=0, columnspan=2, pady=(20, 0))
+        tk.Label(master=self.frm_orders, text="选择想要卡的三刀：", font=('Open Sans', 20)).grid(row=0, column=0, columnspan=2, pady=(20, 0))
         tri_combos = ['蓝白红', '红白绿']
         self.dict_combos = []
 
@@ -82,7 +83,7 @@ class WeaponsRotationSimulator:
                              command=lambda o=combo: self.handler_desired(o)))
             btn.grid(row=i+1, column=0)
             lbl = tk.Label(master=self.frm_orders, font=('Open Sans', 20))
-            lbl.grid(row=i+1, column=1)
+            lbl.grid(row=i+1, column=1, padx=(20, 0))
 
             self.dict_combos.append({'btn': btn, 'lbl': lbl, 'combo': combo})
 
