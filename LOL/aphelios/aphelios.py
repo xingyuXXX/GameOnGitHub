@@ -1,6 +1,8 @@
 import os.path
 import sys
 import tkinter as tk
+from collections import deque
+
 from PIL import ImageTk, Image
 
 app_lang = 'zh'
@@ -39,7 +41,7 @@ class WeaponsRotationSimulator:
         self.btns_weapon = []
         for i, wp_color in enumerate(self.init_color_order):
 
-            if i in [0, 1]:  # does not work on macOS
+            if i in [0, 1]:
                 bg_color = '#add8e6'
             else:
                 bg_color = None
@@ -48,7 +50,8 @@ class WeaponsRotationSimulator:
                                text=self.get_weapon_by_color(wp_color).name,
                                compound=tk.BOTTOM,  # image below text
                                fg=wp_color,
-                               bg=bg_color,
+                               highlightbackground=bg_color,
+                               borderwidth=5,
                                image=self.get_weapon_by_color(wp_color).img,
                                font=("Open Sans", 20),
                                height=320,
@@ -59,7 +62,7 @@ class WeaponsRotationSimulator:
             if i in [0, 1]:
                 button.config(state=tk.NORMAL, command=lambda p=i: self.handler_consume(p))
                 if i == 1:
-                    button.grid(row=0, column=i, padx=(0, 40))
+                    button.grid(row=0, column=i, padx=(0, 20))
             else:
                 button.config(state=tk.DISABLED)
 
@@ -83,18 +86,102 @@ class WeaponsRotationSimulator:
 
             self.dict_combos.append({'btn': btn, 'lbl': lbl, 'combo': combo})
 
+    def extract_consumed_elements(self, transfer_path):
+        """
+        Extract the consumed elements from the transfer path in a beautiful format.
+
+        Args:
+        - transfer_path (list): The transfer path with each item as a tuple (state, consumed_element).
+
+        Returns:
+        - str: String representation of consumed elements in order with arrows.
+        """
+        consumed_elements = [consumed_element for _, consumed_element in transfer_path[1:]]
+        consumed_weapons = [self.get_weapon_by_color(element).name for element in consumed_elements]
+        return " → ".join(consumed_weapons)
+
+    def find_transfer_path(self, initial_state, target_state):
+        """
+        Find the path to transfer from the initial state to the target state and the consumed element in each step.
+
+        Args:
+        - initial_state (tuple): The initial state.
+        - target_state (tuple): The target state.
+        - elements (list): The possible elements in the set.
+
+        Returns:
+        - list: The transfer path with the consumed element in each step.
+                Each item in the list is a tuple (state, consumed_element).
+        """
+        visited = set()
+        queue = deque([(initial_state, [], None)])  # Using None for the consumed element of the initial state
+
+        while queue:
+            current_state, path, consumed_element = queue.popleft()
+
+            # Convert set in current_state to frozenset for hashing purposes
+            hashable_state = (frozenset(current_state[0]), tuple(current_state[1]))
+
+            # If the current state is the target state, return the path
+            if hashable_state == (frozenset(target_state[0]), tuple(target_state[1])):
+                return path + [(current_state, consumed_element)]
+
+            # Mark the current state as visited
+            visited.add(hashable_state)
+
+            # Explore all possible transfers from the current state
+            for element in current_state[0]:
+                if element in self.init_color_order:
+                    new_state = consume((set(current_state[0]), list(current_state[1])), element)
+                    hashable_new_state = (frozenset(new_state[0]), tuple(new_state[1]))
+                    if hashable_new_state not in visited:
+                        queue.append((new_state, path + [(current_state, consumed_element)], element))
+
+        # If there's no path to the target state
+        return None
+
+    def form_state_representation(self, elements_list):
+        """
+        Form the possible state representations from a list of elements.
+
+        Args:
+        - elements_list (list): List of elements.
+
+        Returns:
+        - list: A list containing possible state representations as tuples (set, list).
+        """
+        all_colors = set(self.init_color_order)
+        missing_colors = list(all_colors - set(elements_list))
+
+        if len(elements_list) == 5:
+            return [(set(elements_list[:2]), elements_list[2:5])]
+
+        elif len(elements_list) == 3:
+            state1 = (set(elements_list[:2]), elements_list[2:] + missing_colors)
+            state2 = (set(elements_list[:2]), elements_list[2:] + missing_colors[::-1])
+            return [state1, state2]
+
+        else:
+            raise ValueError("The list should contain 3 or 5 elements.")
+
     def determine_consuming_order(self, desired_combo) -> str:
-        on_hand = self.cur_color_order[:2]
-        on_coming = self.cur_color_order[2:]
+        # Define the weapon color to combo mapping
+        combo_mapping = {
+            '蓝白红': ['blue', 'white', 'red'],
+            '红白绿': ['red', 'white', 'green']
+        }
 
-        if desired_combo == '蓝白红':
-            combo = ['blue', 'white', 'red']
-        elif desired_combo == '红白绿':
-            combo = ['red', 'white', 'green']
+        # Check if the desired combo is defined
+        if desired_combo not in combo_mapping:
+            return 'Not defined combo!'
 
-        if len(set(on_hand).intersection(set(combo))) == 2:
+        combo = combo_mapping[desired_combo]
 
-            return 'Already on hand'
+        state_init = self.form_state_representation(self.cur_color_order)
+        state_target = self.form_state_representation(combo)
+
+        transfer_path = self.find_transfer_path(state_init[0], state_target[0])
+        return self.extract_consumed_elements(transfer_path)
 
     def handler_desired(self, desired_combo):
         for combo in self.dict_combos:
@@ -194,6 +281,38 @@ class Weapon:
             self.name = name_zh
         else:
             self.name = name_en
+
+
+def consume(state, element):
+    """
+    Transfer the state based on the consume rule.
+
+    Args:
+    - state (tuple): A tuple where the first item is a set and the second item is a list.
+    - element (str): The element from the set to be added to the list.
+
+    Returns:
+    - tuple: The transferred state.
+    """
+
+    # Extract the set and list from the state
+    s, l = state
+
+    # Ensure the element is in the set
+    if element not in s:
+        raise ValueError(f"{element} is not in the set.")
+
+    # Remove the element from the set
+    s.remove(element)
+
+    # Add the first element of the list to the set
+    s.add(l[0])
+
+    # Add the element to the end of the list and remove the first element from the list
+    l.append(element)
+    l.pop(0)
+
+    return s, l
 
 
 if __name__ == '__main__':
