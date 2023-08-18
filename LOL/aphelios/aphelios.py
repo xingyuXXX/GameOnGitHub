@@ -2,7 +2,6 @@ import os.path
 import sys
 import tkinter as tk
 from collections import deque
-
 from PIL import ImageTk, Image
 
 app_lang = 'zh'
