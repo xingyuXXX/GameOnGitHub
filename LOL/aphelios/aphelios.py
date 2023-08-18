@@ -17,12 +17,13 @@ def get_resource_path(img_file):
 class WeaponsRotationSimulator:
     def __init__(self):
         self.window = tk.Tk()
-        self.window.title("Aphelios Weapons Rotaion Simulator")
+        self.window.title("Aphelios Weapons Rotation Simulator")
 
         self.frm_weapons = tk.Frame()
-        self.frm_weapons.grid(row=0, column=0)
         self.frm_buttons = tk.Frame()
-        self.frm_buttons.grid(row=1, column=0)
+        self.frm_orders = tk.Frame()
+        self.frm_weapons.pack()
+        self.frm_buttons.pack()
 
         self.calibrum = Weapon("Calibrum", '通碧', get_resource_path('Calibrum.png'), "green")
         self.severum = Weapon("Severum", '断魄', get_resource_path('Severum.png'), "red")
@@ -33,12 +34,12 @@ class WeaponsRotationSimulator:
         self.init_color_order = ['green', 'red', 'purple', 'blue', 'white']
         self.cur_color_order = self.init_color_order[:]
         self.prev_color_order = self.init_color_order[:]
-        self.seleted_order = []
+        self.selected_order = []
 
         self.btns_weapon = []
         for i, wp_color in enumerate(self.init_color_order):
 
-            if i in [0, 1]: # does not work on macOS
+            if i in [0, 1]:  # does not work on macOS
                 bg_color = '#add8e6'
             else:
                 bg_color = None
@@ -62,15 +63,18 @@ class WeaponsRotationSimulator:
         tk.Button(master=self.frm_buttons, text="Undo", font=('Open Sans', 20), command=self.handler_undo).grid(row=0, column=1)
         tk.Button(master=self.frm_buttons, text="Set Order", font=('Open Sans', 20),
                   command=self.handler_set_order).grid(row=0, column=2, padx=(20, 0))
-        self.btns_weapon[0].config(command=self.handler_main_hand)
-        self.btns_weapon[1].config(command=self.handler_off_hand)
+        self.btns_weapon[0].config(command=lambda: self.handler_consume(0))
+        self.btns_weapon[1].config(command=lambda: self.handler_consume(1))
 
-    def handler_main_hand(self):
-        self.consume_weapon(self.get_weapon_by_color(self.cur_color_order[0]))
-        self.config_btns()
+    def handler_consume(self, pos):
+        self.prev_color_order = self.cur_color_order[:]
+        on_hand = self.cur_color_order[:2]
+        on_coming = self.cur_color_order[2:]
 
-    def handler_off_hand(self):
-        self.consume_weapon(self.get_weapon_by_color(self.cur_color_order[1]))
+        next_weapon = on_coming.pop(0)
+        on_coming.append(on_hand[pos])
+        on_hand[pos] = next_weapon
+        self.cur_color_order = on_hand + on_coming
         self.config_btns()
 
     def handler_reset(self):
@@ -103,26 +107,21 @@ class WeaponsRotationSimulator:
                   command=lambda: self.handler_confirm_order(window_set_order)).grid(row=1, column=0, columnspan=5)
 
     def handler_select_weapon(self, btn, color):
-        self.seleted_order.append(color)
+        self.selected_order.append(color)
         btn.config(state=tk.DISABLED,
                    relief=tk.SUNKEN,
-                   text=f"Selected ({len(self.seleted_order)})",
+                   text=f"Selected ({len(self.selected_order)})",
                    fg="black",
                    compound=tk.BOTTOM,
                    font=('Open Sans', 20))
 
     def handler_confirm_order(self, window_set_order):
-        if len(self.seleted_order) != 5:
+        if len(self.selected_order) != 5:
             return
-        self.cur_color_order = self.seleted_order[:]
+        self.cur_color_order = self.selected_order[:]
         self.config_btns()
-        self.seleted_order.clear()
+        self.selected_order.clear()
         window_set_order.destroy()
-
-    def consume_weapon(self, weapon):
-        self.prev_color_order = self.cur_color_order[:]
-        self.cur_color_order.remove(weapon.color)
-        self.cur_color_order.append(weapon.color)
 
     def config_btns(self):
         for i, color in enumerate(self.cur_color_order):
