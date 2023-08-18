@@ -1,4 +1,5 @@
 import os.path
+import random
 import sys
 import tkinter as tk
 from PIL import ImageTk, Image
@@ -35,22 +36,32 @@ class WeaponsRotationSimulator:
         self.seleted_order = []
 
         self.btns_weapon = []
-        for i, color in enumerate(self.init_color_order):
+        for i, wp_color in enumerate(self.init_color_order):
+
+            if i in [0, 1]: # does not work on macOS
+                bg_color = '#add8e6'
+            else:
+                bg_color = None
+
             button = tk.Button(master=self.frm_weapons,
-                               text=self.get_weapon_by_color(color).name,
+                               text=self.get_weapon_by_color(wp_color).name,
                                compound=tk.BOTTOM,  # image below text
-                               fg=color,
-                               image=self.get_weapon_by_color(color).img,
+                               fg=wp_color,
+                               bg=bg_color,
+                               image=self.get_weapon_by_color(wp_color).img,
                                font=("Open Sans", 20),
                                height=320,
                                width=280)
-            button.grid(row=0, column=i)
+            if i == 1:
+                button.grid(row=0, column=i, padx=(0, 40))
+            else:
+                button.grid(row=0, column=i)
             self.btns_weapon.append(button)
 
         tk.Button(master=self.frm_buttons, text="Reset", font=('Open Sans', 20), command=self.handler_reset).grid(row=0, column=0)
         tk.Button(master=self.frm_buttons, text="Undo", font=('Open Sans', 20), command=self.handler_undo).grid(row=0, column=1)
         tk.Button(master=self.frm_buttons, text="Set Order", font=('Open Sans', 20),
-                  command=self.handler_set_order).grid(row=0, column=2, padx=20)
+                  command=self.handler_set_order).grid(row=0, column=2, padx=(20, 0))
         self.btns_weapon[0].config(command=self.handler_main_hand)
         self.btns_weapon[1].config(command=self.handler_off_hand)
 
