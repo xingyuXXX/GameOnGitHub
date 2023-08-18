@@ -53,14 +53,17 @@ class WeaponsRotationSimulator:
                                font=("Open Sans", 20),
                                height=320,
                                width=280)
-            if i == 1:
-                button.grid(row=0, column=i, padx=(0, 40))
-            else:
-                button.grid(row=0, column=i)
-            self.btns_weapon.append(button)
 
-        self.btns_weapon[0].config(command=lambda: self.handler_consume(0))
-        self.btns_weapon[1].config(command=lambda: self.handler_consume(1))
+            button.grid(row=0, column=i)
+
+            if i in [0, 1]:
+                button.config(state=tk.NORMAL, command=lambda p=i: self.handler_consume(p))
+                if i == 1:
+                    button.grid(row=0, column=i, padx=(0, 40))
+            else:
+                button.config(state=tk.DISABLED)
+
+            self.btns_weapon.append(button)
 
         tk.Button(master=self.frm_buttons, text="Reset", font=('Open Sans', 20), command=self.handler_reset).grid(row=0, column=0)
         tk.Button(master=self.frm_buttons, text="Undo", font=('Open Sans', 20), command=self.handler_undo).grid(row=0, column=1)
@@ -80,11 +83,25 @@ class WeaponsRotationSimulator:
 
             self.dict_combos.append({'btn': btn, 'lbl': lbl, 'combo': combo})
 
+    def determine_consuming_order(self, desired_combo) -> str:
+        on_hand = self.cur_color_order[:2]
+        on_coming = self.cur_color_order[2:]
+
+        if desired_combo == '蓝白红':
+            combo = ['blue', 'white', 'red']
+        elif desired_combo == '红白绿':
+            combo = ['red', 'white', 'green']
+
+        if len(set(on_hand).intersection(set(combo))) == 2:
+
+            return 'Already on hand'
+
     def handler_desired(self, desired_combo):
         for combo in self.dict_combos:
             if combo['combo'] == desired_combo:
+                txt = self.determine_consuming_order(desired_combo)
                 combo['btn'].config(state=tk.DISABLED)
-                combo['lbl'].config(text='Selected', fg='black')
+                combo['lbl'].config(text=txt, fg='black')
             else:
                 combo['btn'].config(state=tk.NORMAL)
                 combo['lbl'].config(text='')
@@ -103,6 +120,9 @@ class WeaponsRotationSimulator:
     def handler_reset(self):
         self.cur_color_order = self.init_color_order[:]
         self.config_btns()
+        for combo in self.dict_combos:
+            combo['btn'].config(state=tk.NORMAL)
+            combo['lbl'].config(text='')
 
     def handler_undo(self):
         self.cur_color_order = self.prev_color_order[:]
