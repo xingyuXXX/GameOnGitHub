@@ -1,5 +1,4 @@
 import os.path
-import random
 import sys
 import tkinter as tk
 from PIL import ImageTk, Image
@@ -9,7 +8,7 @@ app_lang = 'zh'
 
 def get_resource_path(img_file):
     relative_path = os.path.join('weapons', img_file)
-    if hasattr(sys, '_MEIPASS'):    # for PyInstaller
+    if hasattr(sys, '_MEIPASS'):  # for PyInstaller
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), relative_path)
 
@@ -24,6 +23,7 @@ class WeaponsRotationSimulator:
         self.frm_orders = tk.Frame()
         self.frm_weapons.pack()
         self.frm_buttons.pack()
+        self.frm_orders.pack()
 
         self.calibrum = Weapon("Calibrum", '通碧', get_resource_path('Calibrum.png'), "green")
         self.severum = Weapon("Severum", '断魄', get_resource_path('Severum.png'), "red")
@@ -59,12 +59,35 @@ class WeaponsRotationSimulator:
                 button.grid(row=0, column=i)
             self.btns_weapon.append(button)
 
+        self.btns_weapon[0].config(command=lambda: self.handler_consume(0))
+        self.btns_weapon[1].config(command=lambda: self.handler_consume(1))
+
         tk.Button(master=self.frm_buttons, text="Reset", font=('Open Sans', 20), command=self.handler_reset).grid(row=0, column=0)
         tk.Button(master=self.frm_buttons, text="Undo", font=('Open Sans', 20), command=self.handler_undo).grid(row=0, column=1)
         tk.Button(master=self.frm_buttons, text="Set Order", font=('Open Sans', 20),
                   command=self.handler_set_order).grid(row=0, column=2, padx=(20, 0))
-        self.btns_weapon[0].config(command=lambda: self.handler_consume(0))
-        self.btns_weapon[1].config(command=lambda: self.handler_consume(1))
+
+        tk.Label(master=self.frm_orders, text="Desired Weapons Combo:", font=('Open Sans', 20)).grid(row=0, column=0, columnspan=2, pady=(20, 0))
+        tri_combos = ['蓝白红', '红白绿']
+        self.dict_combos = []
+
+        for i, combo in enumerate(tri_combos):
+            btn = (tk.Button(master=self.frm_orders, text=combo, font=('Open Sans', 20),
+                             command=lambda o=combo: self.handler_desired(o)))
+            btn.grid(row=i+1, column=0)
+            lbl = tk.Label(master=self.frm_orders, font=('Open Sans', 20))
+            lbl.grid(row=i+1, column=1)
+
+            self.dict_combos.append({'btn': btn, 'lbl': lbl, 'combo': combo})
+
+    def handler_desired(self, desired_combo):
+        for combo in self.dict_combos:
+            if combo['combo'] == desired_combo:
+                combo['btn'].config(state=tk.DISABLED)
+                combo['lbl'].config(text='Selected', fg='black')
+            else:
+                combo['btn'].config(state=tk.NORMAL)
+                combo['lbl'].config(text='')
 
     def handler_consume(self, pos):
         self.prev_color_order = self.cur_color_order[:]
