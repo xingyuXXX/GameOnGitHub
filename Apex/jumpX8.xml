@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Macro xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>jumpX8</Name>
+  <Guid>bee07b22-4c81-437f-807b-c9b24eb4ee32</Guid>
+  <MacroEvents>
+    <MacroEvent>
+      <Type>7</Type>
+      <MacroGroup>
+        <Guid>1b9da5b5-042e-4213-8adb-ea0eb79f0947</Guid>
+        <Name>jumpX4</Name>
+      </MacroGroup>
+    </MacroEvent>
+    <MacroEvent>
+      <Type>7</Type>
+      <Delay>10</Delay>
+      <MacroGroup>
+        <Guid>1b9da5b5-042e-4213-8adb-ea0eb79f0947</Guid>
+        <Name>jumpX4</Name>
+      </MacroGroup>
+    </MacroEvent>
+  </MacroEvents>
+  <IsFolder>false</IsFolder>
+  <FolderGuid>886309a3-ec58-4603-b569-d05da08c24b6</FolderGuid>
+</Macro>
