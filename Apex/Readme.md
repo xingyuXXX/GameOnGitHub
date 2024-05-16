@@ -1,5 +1,7 @@
 # Apex
 
+游戏内设置的路径：`C:\Users\<username>\Saved Games\Respawn\Apex\local\settings.cfg`
+
 ## 灵敏度
 
 游戏内：
