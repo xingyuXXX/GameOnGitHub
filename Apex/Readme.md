@@ -1,6 +1,6 @@
 # Apex
 
-```ps
+```sh
 C:\Users\<username>\Saved Games\Respawn\Apex\local\settings.cfg
 ```
 
@@ -10,7 +10,7 @@ C:\Users\<username>\Saved Games\Respawn\Apex\local\settings.cfg
 
 |对象|数值|
 |-|-|
-|ADS|2.8|
+|ADS|1.2|
 |1x|0.85|
 |2x|0.9|
 |3x|1.0|
@@ -19,7 +19,7 @@ C:\Users\<username>\Saved Games\Respawn\Apex\local\settings.cfg
 |8x|1.0|
 |10x|1.0|
 
-鼠标 DPI：400
+鼠标 DPI：700
 
 ## 视频
 
