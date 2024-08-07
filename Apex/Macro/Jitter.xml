@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Macro xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>Jitter</Name>
   <Guid>2932b032-7e82-49d3-8558-2c0bc775e99c</Guid>
@@ -35,7 +35,6 @@
     </MacroEvent>
     <MacroEvent>
       <Type>2</Type>
-      <Delay>1</Delay>
       <MouseEvent>
         <MouseButton>1</MouseButton>
         <State>1</State>
